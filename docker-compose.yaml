@@ -1,0 +1,26 @@
+---
+    version: "3"
+    maintainer: "Magrovisk o ballack"
+    
+    services:
+      steam:
+        image: rpufky/steam:latest
+        restart: unless-stopped
+        
+        ports:
+          - 27015:27015
+          - 27015:27015/udp
+          - 27016:27016/udp
+        
+          environment:
+          - PUID=1000
+          - PGID=1000
+          - UPDATE_OS=1
+          - UPDATE_STEAM=1
+          - UPDATE_SERVER=1
+          - PLATFORM=windows
+          - STEAM_APP_ID=443030
+        
+          volumes:
+          - ./docker-csgo-server:/data
+          - ./docker-csgo-server/plugins:/plugins
